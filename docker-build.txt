@@ -1,0 +1,8 @@
+DOCKER_BUILDKIT=1 docker build -f containers/wetty/Dockerfile -t wetty_web:2.7.0 .
+docker save -o ${WORKSPACE}/$image.tar $image; 
+docker load -i devops-api-gateway_1.0.0.tar
+docker image prune --force
+
+docker-compose -f docker-web-terminal-service.yml up -d --force-recreate
+
+docker run -it --rm wetty_web:2.7.0 sh

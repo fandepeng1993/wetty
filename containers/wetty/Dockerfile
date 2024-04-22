@@ -3,7 +3,8 @@ RUN apk add -U build-base python3
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
-RUN npx pnpm i -g pnpm@latest
+# RUN npx pnpm i -g pnpm@latest
+RUN npm install -g pnpm@8.3.1 --force
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 
@@ -26,4 +27,5 @@ RUN apk add -U coreutils openssh-client sshpass && \
     mkdir ~/.ssh
 
 EXPOSE 8000
-CMD [ "pnpm", "start" ]
+# CMD [ "pnpm", "start" ]
+CMD [ "npm", "start" ]
